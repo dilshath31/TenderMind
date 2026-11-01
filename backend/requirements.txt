@@ -1,0 +1,25 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg[binary]
+alembic
+pydantic
+email-validator
+pydantic-settings
+python-jose[cryptography]
+argon2-cffi
+python-multipart
+celery
+redis
+PyMuPDF
+torch
+sentence-transformers
+faiss-cpu
+scikit-learn
+transformers
+requests
+httpx
+matplotlib
+groq

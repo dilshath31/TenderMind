@@ -1,0 +1,214 @@
+[
+  {
+    "query_id": "Q01",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Financial Requirements",
+    "query": "What is the Earnest Money Deposit EMD and tender processing fee amount?",
+    "relevant_chunk_ids": [
+      "6d260200-c10b-454b-b263-e27e6506f4a1",
+      "4db77ea4-cd7b-4e0e-a495-4e81289b18c1",
+      "876bc780-56cf-412d-a1d3-68b7ce17c506",
+      "67d4e449-9f82-47f8-9a76-5ba6e318f486"
+    ],
+    "relevant_page_numbers": [1, 4, 6],
+    "ground_truth_excerpt": "Tender Fee INR 5,000, Earnest Money Deposit (EMD) INR 4,96,000.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q02",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Eligibility Criteria",
+    "query": "What are the minimum conditions for annual turnover and years in business?",
+    "relevant_chunk_ids": [
+      "208d4900-e189-414a-aa93-0498eca77cc1",
+      "67d4e449-9f82-47f8-9a76-5ba6e318f486"
+    ],
+    "relevant_page_numbers": [3, 6],
+    "ground_truth_excerpt": "Years in Business: At least 5 years of continuous operation; Average Annual Turnover: Minimum INR 10 crore during last three financial years.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q03",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Timeline & Deadlines",
+    "query": "What is the bid submission deadline date and time?",
+    "relevant_chunk_ids": [
+      "65e5342d-f518-43fe-b309-156f1db3b01d",
+      "67d4e449-9f82-47f8-9a76-5ba6e318f486",
+      "ffbb3ee3-d884-49d8-b275-154f95c2bc6d"
+    ],
+    "relevant_page_numbers": [3, 6],
+    "ground_truth_excerpt": "Bid Submission Deadline: 28 October 2026, 03:00 PM; Technical Bid Opening: 29 October 2026, 03:30 PM.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q04",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Compliance & Certifications",
+    "query": "What ISO and information security certifications are required for the bidder?",
+    "relevant_chunk_ids": [
+      "208d4900-e189-414a-aa93-0498eca77cc1",
+      "58eccbab-56ef-4b18-9514-a66d3951f453",
+      "deffcca8-0305-40f5-adea-0a383a4e4a3d",
+      "67d4e449-9f82-47f8-9a76-5ba6e318f486"
+    ],
+    "relevant_page_numbers": [3, 5, 6],
+    "ground_truth_excerpt": "ISO 9001:2015 or later for quality management; ISO/IEC 27001 certification for information security.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q05",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Scope & Deliverables",
+    "query": "What are the required software deliverables and technical documentation?",
+    "relevant_chunk_ids": [
+      "f9e3a0e2-25b9-4da8-8bf7-1ed280fe5e3a",
+      "43e4f1e1-9a9a-4eac-9c97-00a66e5241d7"
+    ],
+    "relevant_page_numbers": [2],
+    "ground_truth_excerpt": "SRS, System Architecture and Database Design, UI/UX Design Specifications, Working web application, Source code, Test plans/reports, User manuals.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q06",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Contractual Penalties",
+    "query": "What is the liquidated damages penalty rate for delayed milestones?",
+    "relevant_chunk_ids": [
+      "876bc780-56cf-412d-a1d3-68b7ce17c506"
+    ],
+    "relevant_page_numbers": [4],
+    "ground_truth_excerpt": "Liquidated Damages: 0.5% of delayed milestone value per week, subject to a maximum of 10% of the affected contract value.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q07",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Financial Requirements",
+    "query": "What is the required bank solvency certificate amount?",
+    "relevant_chunk_ids": [
+      "208d4900-e189-414a-aa93-0498eca77cc1",
+      "58eccbab-56ef-4b18-9514-a66d3951f453",
+      "deffcca8-0305-40f5-adea-0a383a4e4a3d",
+      "67d4e449-9f82-47f8-9a76-5ba6e318f486"
+    ],
+    "relevant_page_numbers": [3, 5, 6],
+    "ground_truth_excerpt": "Bank solvency certificate of at least INR 2 crore, issued within the previous 12 months.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q08",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Evaluation Criteria",
+    "query": "What are the technical evaluation criteria and maximum marks distribution?",
+    "relevant_chunk_ids": [
+      "deffcca8-0305-40f5-adea-0a383a4e4a3d",
+      "2b253491-a2fb-4b48-bd5f-e790789f6994"
+    ],
+    "relevant_page_numbers": [5],
+    "ground_truth_excerpt": "Bidder profile (15), Technical approach (25), Solution architecture (20), Implementation plan (15), Team (10), Demo (15). Minimum qualifying score: 70 marks.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q09",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Team Composition",
+    "query": "What key roles and experience are required for the project team?",
+    "relevant_chunk_ids": [
+      "13d5df74-7ef6-427c-ab90-ed10d1bdf10c"
+    ],
+    "relevant_page_numbers": [4],
+    "ground_truth_excerpt": "Project Manager (10+ yrs), Solution Architect (8+ yrs), Backend Developers (3+), Frontend Developers (2+), QA (2+), DevOps (1), Security Specialist (1).",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q10",
+    "tender_id": 11,
+    "tender_title": "E-Governance Document Management Portal",
+    "category": "Procurement Contact",
+    "query": "What contact phone number and email address are provided for tender inquiries?",
+    "relevant_chunk_ids": [
+      "ffbb3ee3-d884-49d8-b275-154f95c2bc6d",
+      "410dbd9e-f24b-4cbb-8019-d82f38edf02b"
+    ],
+    "relevant_page_numbers": [6],
+    "ground_truth_excerpt": "Tender Cell, Directorate of e-Governance, Chennai. Email: tenders@example.gov.in, Phone: +91-44-4000-2026.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q11",
+    "tender_id": 10,
+    "tender_title": "SBI Main Branch Indore Electrical and AC Works",
+    "category": "Financial Requirements",
+    "query": "What is the Earnest Money Deposit EMD required for the SBI Indore branch electrical works?",
+    "relevant_chunk_ids": [
+      "4c08bc34-c6f5-46e2-bb19-9634e422ae4f",
+      "b7649bbc-e8c3-4ca4-b845-1a248ed7c290"
+    ],
+    "relevant_page_numbers": [2],
+    "ground_truth_excerpt": "Earnest Money Deposit: Rs. 6,000/- (Rupees Six Thousand only) by Demand Draft / Banker's cheque valid for 90 days.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q12",
+    "tender_id": 10,
+    "tender_title": "SBI Main Branch Indore Electrical and AC Works",
+    "category": "Timeline & Deadlines",
+    "query": "What is the time allowed for completion of work from the date of commencement?",
+    "relevant_chunk_ids": [
+      "4c08bc34-c6f5-46e2-bb19-9634e422ae4f"
+    ],
+    "relevant_page_numbers": [2],
+    "ground_truth_excerpt": "Time allowed for completion: 30 (Thirty) Days from the date of Commencement.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q13",
+    "tender_id": 10,
+    "tender_title": "SBI Main Branch Indore Electrical and AC Works",
+    "category": "Contractual Penalties",
+    "query": "What is the liquidated damages rate for delay in SBI contract execution?",
+    "relevant_chunk_ids": [
+      "f6a6b6ee-76e6-4055-8b24-2a209cef26d1"
+    ],
+    "relevant_page_numbers": [3],
+    "ground_truth_excerpt": "Liquidated Damages: 0.50% of contract amount per weeks subject to max. 5% of contract value or final bill value.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q14",
+    "tender_id": 10,
+    "tender_title": "SBI Main Branch Indore Electrical and AC Works",
+    "category": "Warranty & Liability",
+    "query": "What is the defect liability period for the SBI sports room and sales room works?",
+    "relevant_chunk_ids": [
+      "f6a6b6ee-76e6-4055-8b24-2a209cef26d1"
+    ],
+    "relevant_page_numbers": [3],
+    "ground_truth_excerpt": "Defect liability period: 12 Months from the date of Virtual Completion.",
+    "verification_status": "manually_verified"
+  },
+  {
+    "query_id": "Q15",
+    "tender_id": 10,
+    "tender_title": "SBI Main Branch Indore Electrical and AC Works",
+    "category": "Financial Requirements",
+    "query": "What is the minimum value of work required for issuing an interim certificate payment?",
+    "relevant_chunk_ids": [
+      "f6a6b6ee-76e6-4055-8b24-2a209cef26d1",
+      "d05d3dd3-af96-4181-a5db-d340134a74b3"
+    ],
+    "relevant_page_numbers": [3],
+    "ground_truth_excerpt": "Value of Interim Certificate: Rs. 5.0 Lakhs. No advance on materials / plant / machinery or mobilization advance.",
+    "verification_status": "manually_verified"
+  }
+]

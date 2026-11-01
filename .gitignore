@@ -1,0 +1,74 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdid/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ── Node ──────────────────────────────────────────────────────────────────────
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ── Environment (NEVER commit secrets) ───────────────────────────────────────
+.env
+.env.local
+.env.production
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+.docker/
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Large data / binary files (keep dirs via .gitkeep) ───────────────────────
+data/
+uploads/
+reports/
+# ML model weights and checkpoints
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.onnx
+# Vector index files (regenerated on startup)
+*.faiss
+*.pkl
+# Compiled / cached
+*.pyc
+*.pyo
+
+# Keep empty placeholder dirs
+!data/.gitkeep
+!uploads/.gitkeep
+!reports/.gitkeep
