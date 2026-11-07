@@ -121,7 +121,13 @@ export function Login() {
                   className={tm.input} placeholder="you@company.com" required autoComplete="email" />
               </div>
               <div>
-                <label className={tm.label}>Password</label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className={tm.label} style={{ marginBottom: 0 }}>Password</label>
+                  <Link to="/forgot-password"
+                    className="text-[11px] text-brand hover:underline font-medium">
+                    Forgot password?
+                  </Link>
+                </div>
                 <div className="relative">
                   <input type={show ? 'text' : 'password'} value={pwd} onChange={e => setPwd(e.target.value)}
                     className={cn(tm.input, 'pr-9')} placeholder="••••••••" required autoComplete="current-password" />

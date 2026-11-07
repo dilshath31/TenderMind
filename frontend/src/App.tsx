@@ -3,6 +3,7 @@ import { Layout } from './layouts/Layout'
 import { Dashboard } from './pages/Dashboard'
 import { Login } from './pages/Login'
 import { Register } from './pages/Register'
+import { ForgotPassword } from './pages/ForgotPassword'
 import { CompanyProfile } from './pages/CompanyProfile'
 import { Tenders } from './pages/Tenders'
 import { TenderUpload } from './pages/TenderUpload'
@@ -28,8 +29,9 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login"    element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login"           element={<Login />} />
+          <Route path="/register"        element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Layout />}>

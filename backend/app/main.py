@@ -26,6 +26,10 @@ _add_column_if_missing("companies", "net_worth_cr",       "FLOAT")
 _add_column_if_missing("companies", "solvency_amount_cr", "FLOAT")
 _add_column_if_missing("companies", "num_employees",      "INTEGER")
 
+# ── User password-reset columns ───────────────────────────────────────────────
+_add_column_if_missing("users", "reset_token",         "VARCHAR")
+_add_column_if_missing("users", "reset_token_expires", "TIMESTAMP WITH TIME ZONE")
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json"

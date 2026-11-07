@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from datetime import timedelta
+from datetime import timedelta, datetime, timezone
+import secrets
+import hashlib
 
 from app.db.database import get_db
 from app.core import security
@@ -12,16 +14,24 @@ from app.schemas.user import UserCreate, User as UserSchema
 
 router = APIRouter()
 
+# ─── helpers ──────────────────────────────────────────────────────────────────
+def _hash_token(raw: str) -> str:
+    """Store a SHA-256 hash of the token — never store raw tokens."""
+    return hashlib.sha256(raw.encode()).hexdigest()
+
+
+# ─── Login ────────────────────────────────────────────────────────────────────
 @router.post("/login", response_model=Token)
 def login_access_token(
-    db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
+    db: Session = Depends(get_db),
+    form_data: OAuth2PasswordRequestForm = Depends()
 ):
     user = db.query(User).filter(User.email == form_data.username).first()
     if not user or not security.verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Incorrect email or password")
-    elif not user.is_active:
+    if not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
-    
+
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     return {
         "access_token": security.create_access_token(
@@ -30,46 +40,105 @@ def login_access_token(
         "token_type": "bearer",
     }
 
+
+# ─── Register ─────────────────────────────────────────────────────────────────
 @router.post("/register", response_model=UserSchema)
-def register_user(
-    *,
-    db: Session = Depends(get_db),
-    user_in: UserCreate
-):
-    user = db.query(User).filter(User.email == user_in.email).first()
-    if user:
-        raise HTTPException(
-            status_code=400,
-            detail="An account with this email already exists.",
-        )
-        
+def register_user(*, db: Session = Depends(get_db), user_in: UserCreate):
+    if db.query(User).filter(User.email == user_in.email).first():
+        raise HTTPException(status_code=400, detail="An account with this email already exists.")
     if len(user_in.password) < 8:
-        raise HTTPException(
-            status_code=400,
-            detail="Password must be at least 8 characters.",
-        )
-        
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters.")
     if len(user_in.password) > 100:
-        raise HTTPException(
-            status_code=400,
-            detail="Password is too long.",
-        )
+        raise HTTPException(status_code=400, detail="Password is too long.")
+
     user = User(
         email=user_in.email,
         hashed_password=security.get_password_hash(user_in.password),
         full_name=user_in.full_name,
     )
-    db.add(user)
-    db.commit()
-    db.refresh(user)
+    db.add(user); db.commit(); db.refresh(user)
     return user
 
-from pydantic import BaseModel
+
+# ─── Forgot password — generate a reset token ────────────────────────────────
+from pydantic import BaseModel, EmailStr
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+@router.post("/forgot-password")
+def forgot_password(req: ForgotPasswordRequest, db: Session = Depends(get_db)):
+    """
+    Generates a 6-hour reset token for the account.
+    Returns the token directly (no email server needed).
+    The frontend shows it in a copyable dialog so the user can use it immediately.
+    """
+    user = db.query(User).filter(User.email == req.email).first()
+    # Always return success to prevent email enumeration
+    if not user or not user.is_active:
+        return {
+            "message": "If that account exists, a reset token has been generated.",
+            "token": None,
+            "expires_in_hours": 6
+        }
+
+    raw_token = secrets.token_urlsafe(32)
+    user.reset_token         = _hash_token(raw_token)
+    user.reset_token_expires = datetime.now(timezone.utc) + timedelta(hours=6)
+    db.commit()
+
+    return {
+        "message": "Reset token generated. Copy the token below and use it to reset your password.",
+        "token":   raw_token,      # shown once — user must copy it
+        "expires_in_hours": 6
+    }
+
+
+# ─── Reset password — consume the token ──────────────────────────────────────
+class ResetPasswordRequest(BaseModel):
+    email:     EmailStr
+    token:     str
+    new_password: str
+
+@router.post("/reset-password")
+def reset_password(req: ResetPasswordRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == req.email).first()
+    if not user:
+        raise HTTPException(status_code=400, detail="Invalid email or token.")
+
+    if not user.reset_token or not user.reset_token_expires:
+        raise HTTPException(status_code=400, detail="No reset token found. Request a new one.")
+
+    # Check expiry
+    now = datetime.now(timezone.utc)
+    expires = user.reset_token_expires
+    if expires.tzinfo is None:
+        expires = expires.replace(tzinfo=timezone.utc)
+    if now > expires:
+        raise HTTPException(status_code=400, detail="Reset token has expired. Please request a new one.")
+
+    # Verify token
+    if _hash_token(req.token) != user.reset_token:
+        raise HTTPException(status_code=400, detail="Invalid reset token.")
+
+    if len(req.new_password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters.")
+
+    # Apply new password and clear the token
+    user.hashed_password = security.get_password_hash(req.new_password)
+    user.reset_token         = None
+    user.reset_token_expires = None
+    db.commit()
+
+    return {"message": "Password reset successfully. You can now sign in with your new password."}
+
+
+# ─── Change password (authenticated) ─────────────────────────────────────────
 from app.api import deps
 
 class ChangePasswordRequest(BaseModel):
     current_password: str
-    new_password: str
+    new_password:     str
 
 @router.post("/change-password")
 def change_password(
@@ -79,14 +148,11 @@ def change_password(
 ):
     if not security.verify_password(request.current_password, current_user.hashed_password):
         raise HTTPException(status_code=400, detail="Current password is incorrect.")
-        
     if len(request.new_password) < 8:
         raise HTTPException(status_code=400, detail="New password must be at least 8 characters.")
-        
     if len(request.new_password) > 100:
         raise HTTPException(status_code=400, detail="New password is too long.")
-        
+
     current_user.hashed_password = security.get_password_hash(request.new_password)
-    db.add(current_user)
-    db.commit()
+    db.add(current_user); db.commit()
     return {"status": "success", "message": "Password changed successfully."}
