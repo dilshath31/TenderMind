@@ -46,7 +46,7 @@ This will start:
 - Celery Worker (background)
 
 ### 4. Open the App
-Navigate to [http://localhost:5173](http://localhost:5173).
+Navigate to [http://localhost:5173](http://localhost:4173).
 
 ## Privacy
 Only anonymized queries are sent to the Groq API. Your raw tender PDFs and company profile stay on your server. Do not upload confidential documents if you require full on-premises processing.
