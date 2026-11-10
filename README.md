@@ -42,7 +42,7 @@ This will start:
 - PostgreSQL (port 5432)
 - Redis (port 6379)
 - FastAPI Backend (port 8000)
-- React Frontend (port 5173)
+- React Frontend (port 4173)
 - Celery Worker (background)
 
 ### 4. Open the App
